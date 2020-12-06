@@ -20,6 +20,7 @@ namespace Virgis {
         public Button quitButton;
         public GameObject layersUI;
         public GameObject startMenu;
+        public AudioSource mouseClickSound;
 
         private AppState _appState;
 
@@ -50,23 +51,28 @@ namespace Virgis {
         }
 
         public void OnShowLayersButtonClicked() {
+            mouseClickSound.Play();
             gameObject.SetActive(false);
             layersUI.SetActive(true);
         }
 
         public void OnStartEditButtonClicked() {
+            mouseClickSound.Play();
             _appState.StartEditSession();
         }
 
         public void OnStopSaveEditButtonClicked() {
+            mouseClickSound.Play();
             _appState.StopSaveEditSession();
         }
 
         public void OnStopDiscardEditButtonClicked() {
+            mouseClickSound.Play();
             _appState.StopDiscardEditSession();
         }
 
         public void onFileClicked() {
+            mouseClickSound.Play();
             startMenu.SetActive(true);
         }
 
