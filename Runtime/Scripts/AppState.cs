@@ -13,10 +13,11 @@ using Pdal;
 
 namespace Virgis {
 
-    // AppState is a global singleton object that stores
-    // app states, such as EditSession, etc.
-    //
-    // Singleton pattern taken from https://learn.unity.com/tutorial/level-generation
+    /// <summary>
+    /// AppState is a global singleton object that stores app states, such as EditSession, etc.
+    /// 
+    /// Singleton pattern taken from https://learn.unity.com/tutorial/level-generation
+    /// </summary>
     public class AppState : MonoBehaviour {
         public static AppState instance = null;
 
@@ -24,6 +25,7 @@ namespace Virgis {
         private List<Component> _layers;
         private SpatialReference _crs;
         private CoordinateTransformation _trans;
+
         public OrientEvent Orientation {
             get;
             private set;
@@ -52,7 +54,7 @@ namespace Virgis {
             private set;
         }
 
-        void Awake() {
+        protected virtual void Awake() {
             Debug.Log("AppState awakens");
             if (instance == null) {
                 Debug.Log("AppState instance assigned");
@@ -101,7 +103,7 @@ namespace Virgis {
         /// 
         /// Call this method everytime a new project has been loaded,
         /// e.g. New Project, Open Project
-        public void Init() {
+        public virtual void Init() {
             IVirgisLayer firstLayer = (IVirgisLayer) _layers[0];
             if (firstLayer.GetMetadata().DataType == RecordSetDataType.MapBox && _layers.Count > 1)
                 firstLayer = (IVirgisLayer) _layers[1];
